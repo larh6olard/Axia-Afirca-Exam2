@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 
 const createUser = async (req, res) => {
   const { email, password, ...others } = req.body;
+  
   if (!email || !password) {
     return res.send("Please provide valid registration details!");
   }
