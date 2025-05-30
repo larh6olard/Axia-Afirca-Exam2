@@ -7,9 +7,8 @@ const mongoose = require('mongoose');
 const app = express();
 
 // Create a connection to MongoDB
-const uri = "mongodb://127.0.0.1:27017/user-login"
 mongoose
-  .connect(uri)
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connected with Mongoose!'))
   .catch(err => console.error('Connection error:', err));
 
