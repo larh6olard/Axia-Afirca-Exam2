@@ -1,7 +1,5 @@
 // import express from 'express';
 const express = require('express');
-const studentRoutes = require("./routes/student.route");
-const courseRoutes = require('./routes/course.route');
 const userRoutes = require('./routes/user.route');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -9,8 +7,9 @@ const mongoose = require('mongoose');
 const app = express();
 
 // Create a connection to MongoDB
+const uri = "mongodb://127.0.0.1:27017/user-login"
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(uri)
   .then(() => console.log('MongoDB connected with Mongoose!'))
   .catch(err => console.error('Connection error:', err));
 
@@ -23,12 +22,6 @@ mongoose.connection.on('error', err => {
 
 // Universal Middleware
 app.use(express.json());
-
-// Student Endpoints
-app.use(studentRoutes);
-
-// Courses Endpoints
-app.use(courseRoutes);
 
 // Users Endpoints
 app.use(userRoutes);
